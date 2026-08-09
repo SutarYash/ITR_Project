@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+
+    <div class="logo">
+        Admin Panel
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</header>
+
+<div class="dashboard-box">
+
+    <h1>Admin Dashboard</h1>
+
+    <p class="welcome-text">
+        Welcome {{ name }}
+    </p>
+
+    <!-- Homepage Management -->
+
+    <h2>Homepage Management</h2>
+
+    <div class="dashboard-buttons">
+
+        <a href="/manage-banner">
+            <button>Manage Banner</button>
+        </a>
+
+        <a href="/manage-vision">
+            <button>Vision & Mission</button>
+        </a>
+
+        <a href="/manage-statistics">
+            <button>Statistics</button>
+        </a>
+
+        <a href="/manage-initiatives">
+            <button>Initiatives</button>
+        </a>
+
+        <a href="/logout">
+            <button>Logout</button>
+        </a>
+
+    </div>
+
+    <!-- About Us -->
+
+    <h2>About Us Management</h2>
+
+    <div class="dashboard-buttons">
+
+        <a href="/manage_story">
+            <button>Manage Our Story</button>
+        </a>
+
+        <a href="/manage_core_values">
+            <button>Manage Core Values</button>
+        </a>
+
+        <a href="/manage_programs">
+            <button>Manage Programs</button>
+        </a>
+
+        <a href="/manage_team">
+            <button>Manage Team Members</button>
+        </a>
+
+    </div>
+
+    <!-- Projects -->
+
+    <h2>Projects Management</h2>
+
+    <div class="dashboard-buttons">
+
+        <a href="/projects">
+            <button>Manage Projects</button>
+        </a>
+
+        <a href="/add_project">
+            <button>Add Projects</button>
+        </a>
+
+    </div>
+
+    <!-- Media -->
+
+    <h2>Media Management</h2>
+
+    <div class="dashboard-buttons">
+
+        <a href="/media">
+            <button>Media Dashboard</button>
+        </a>
+
+        <a href="/gallery">
+            <button>Add Gallery</button>
+        </a>
+
+        <a href="/media_coverages">
+            <button>Add Media Coverage</button>
+        </a>
+
+        <a href="/press_releases">
+            <button>Add Press Release</button>
+        </a>
+
+        <a href="/videos">
+            <button>Add Videos</button>
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+</body>
+</html>

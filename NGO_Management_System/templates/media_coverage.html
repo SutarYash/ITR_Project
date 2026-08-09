@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Coverage</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin-theme.css') }}">
+
+</head>
+<body>
+
+<div class="container mt-5">
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>Media Coverage</h2>
+
+<a href="/add_media_coverage" class="btn btn-success">
++ Add Media Coverage
+</a>
+
+</div>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Title</th>
+
+<th>URL</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for item in coverage %}
+
+<tr>
+
+<td>{{ item["title"] }}</td>
+
+<td>
+<a href="{{ item['url'] }}" target="_blank">
+{{ item["url"] }}
+</a>
+</td>
+
+<td>
+
+<a href="/edit_media_coverage/{{ item['id'] }}"
+class="btn btn-warning btn-sm">
+Edit
+</a>
+
+<a href="/delete_media_coverage/{{ item['id'] }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('Delete this media coverage?')">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<a href="/dashboard" class="btn btn-secondary">
+← Back to Dashboard
+</a>
+
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+
+</body>
+</html>

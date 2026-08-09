@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Banner</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Manage Banner</h1>
+</header>
+
+<div class="container">
+
+<section>
+
+<form method="POST">
+
+    <input type="text"
+           name="image_url"
+           placeholder="Banner Image URL"
+           required>
+
+    <br><br>
+
+    <input type="text"
+           name="title"
+           placeholder="Banner Title"
+           required>
+
+    <br><br>
+
+    <textarea
+        name="description"
+        placeholder="Banner Description"
+        required>
+    </textarea>
+
+    <br><br>
+
+    <button type="submit">
+        Save Banner
+    </button>
+
+</form>
+
+</section>
+
+<section>
+
+<h2>All Banners</h2>
+
+{% for banner in banners %}
+
+<div class="card">
+
+    <img src="{{ banner[1] }}" width="300">
+
+    <h3>{{ banner[2] }}</h3>
+
+    
+
+    <p>{{ banner[3] }}</p>
+    <a href="/delete-banner/{{ banner[0] }}">
+    <button>Delete</button>
+    </a>
+
+</div>
+
+{% endfor %}
+
+</section>
+
+<a href="/dashboard">
+    <button>Back to Dashboard</button>
+</a>
+
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+
+</body>
+</html>

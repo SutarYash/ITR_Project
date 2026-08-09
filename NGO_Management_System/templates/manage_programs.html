@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Programs</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container{
+            width: 80%;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .card{
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        input, textarea{
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button{
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .delete-btn{
+            background: red;
+        }
+
+        .back-btn{
+            background: #333;
+        }
+
+    </style><link rel="stylesheet" href="{{ url_for('static', filename='admin-theme.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/dashboard">
+        <button class="back-btn">
+            ⬅ Back to Dashboard
+        </button>
+    </a>
+
+    <h1>Manage Programs</h1>
+
+    <div class="card">
+
+        <form action="/add_program" method="POST">
+
+            <input type="text"
+                   name="name"
+                   placeholder="Program Name"
+                   required>
+
+            <br><br>
+
+            <textarea name="description"
+                      placeholder="Program Description"
+                      required>
+            </textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Add Program
+            </button>
+
+        </form>
+
+    </div>
+
+    {% for program in programs %}
+
+    <div class="card">
+
+        <h3>{{ program[1] }}</h3>
+        <p>{{ program[2] }}</p>
+
+        <a href="/delete_program/{{ program[0] }}">
+            <button class="delete-btn">
+                Delete
+            </button>
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+</body>
+</html>

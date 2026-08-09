@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Management System</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+
+    <div class="logo">
+        HomeCare
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#vision">Vision</a>
+        <a href="#statistics">Statistics</a>
+        <a href="#initiatives">Initiatives</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About Us</a>
+        <a href="/media">Media</a>
+        <a href="/login">Admin Login</a>
+        
+    </div>
+
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Empowering Better Home Management
+        </h1>
+
+        <p>
+            We focus on improving lives through
+            care, initiatives, support, and better
+            management systems.
+        </p>
+
+        <br>
+
+        <a href="/login">
+            <button>
+                Admin Login
+            </button>
+        </a>
+
+    </div>
+
+</section>
+
+<div class="container">
+
+    <!-- Banner Section -->
+    <section>
+
+        <h2>Our Banner</h2>
+
+        {% for banner in banners %}
+
+        <div class="card">
+
+            <img src="{{ banner[1] }}">
+
+            <h3>{{ banner[2] }}</h3>
+
+            <p>{{ banner[3] }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <!-- Vision & Mission -->
+    <section id="vision">
+
+        <h2>Vision & Mission</h2>
+
+        {% for item in vision_data %}
+
+        <div class="card">
+
+            <h3>{{ item[1] }}</h3>
+            <p>{{ item[2] }}</p>
+
+            <br>
+
+            <h3>{{ item[3] }}</h3>
+            <p>{{ item[4] }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <!-- Statistics -->
+    <section id="statistics">
+
+    <h2>Statistics</h2>
+
+    <div class="stats-container">
+
+        {% for stat in statistics %}
+
+        <div class="stat-card">
+
+            <h3>{{ stat[2] }}</h3>
+
+            <p>{{ stat[1] }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+    <!-- Initiatives -->
+    <section id="initiatives">
+
+        <h2>Our Initiatives</h2>
+
+        {% for item in initiatives %}
+
+        <div class="card">
+
+            <h3>{{ item[1] }}</h3>
+
+            <p>{{ item[2] }}</p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+
+    <p>
+        © 2026 Home Management System |
+        All Rights Reserved
+    </p>
+
+</footer>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+</body>
+</html>

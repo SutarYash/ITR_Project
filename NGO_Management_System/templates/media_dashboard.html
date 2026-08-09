@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Management</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+
+    <div class="logo">
+        Admin Panel
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="dashboard-box">
+
+        <h1>Media Management</h1>
+
+        <div class="dashboard-buttons">
+
+            <a href="/press_releases">
+                <button>Manage Press Releases</button>
+            </a>
+
+            <a href="/media_coverages">
+                <button>Manage Media Coverage</button>
+            </a>
+
+            <a href="/image_gallery">
+                <button>Manage Image Gallery</button>
+            </a>
+
+            <a href="/videos">
+                <button>Manage Videos</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#0d6efd">
+    <link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        h2{
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+
+        .section{
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .program-card{
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .team-container{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-card{
+            background: white;
+            width: 220px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .team-card img{
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        ul{
+            list-style-type: square;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin-theme.css') }}">
+
+</head>
+<body>
+
+    
+
+    <div style="padding:20px;">
+
+        <a href="/">
+            <button style="
+                background:#333;
+                color:white;
+                border:none;
+                padding:10px 18px;
+                border-radius:8px;
+                cursor:pointer;
+                font-size:15px;
+        ">
+                ⬅ Back to Home
+            </button>
+        </a>
+
+    </div>
+
+    <div class="container">
+
+        <h1>About Us</h1>
+
+        <!-- OUR STORY -->
+        <div class="section">
+
+            <h2>Our Story</h2>
+
+            {% for story in stories %}
+                <p>{{ story[1] }}</p>
+            {% endfor %}
+
+        </div>
+
+        <!-- CORE VALUES -->
+        <div class="section">
+
+            <h2>Core Values</h2>
+
+            <ul>
+                {% for value in values %}
+                    <li>{{ value[1] }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- PROGRAMS -->
+        <div class="section">
+
+            <h2>Programs</h2>
+
+            {% for program in programs %}
+
+                <div class="program-card">
+                    <h3>{{ program[1] }}</h3>
+                    <p>{{ program[2] }}</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- TEAM MEMBERS -->
+        <div class="section">
+
+            <h2>Team Members</h2>
+
+            <div class="team-container">
+
+                {% for member in team %}
+
+                <div class="team-card">
+
+                    <img src="{{ url_for('static',
+                    filename='uploads/' + member[3]) }}">
+
+                    <h3>{{ member[1] }}</h3>
+                    <p>{{ member[2] }}</p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+</body>
+</html>

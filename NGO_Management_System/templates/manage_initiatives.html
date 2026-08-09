@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Initiatives</title>
+
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<meta name="theme-color" content="#0d6efd">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Manage Initiatives</h1>
+</header>
+
+<div class="container">
+
+    <!-- Form Section -->
+    <section>
+
+        <form method="POST">
+
+            <input type="text"
+                   name="title"
+                   placeholder="Initiative Title"
+                   required>
+
+            <br><br>
+
+            <textarea
+                name="description"
+                placeholder="Description"
+                required>
+            </textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Save
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Saved Initiatives -->
+    <section>
+
+        <h2>Saved Initiatives</h2>
+
+        {% for item in initiatives %}
+
+        <div class="card">
+
+            <h3>{{ item[1] }}</h3>
+            <p>{{ item[2] }}</p>
+
+            <a href="/delete-initiative/{{ item[0] }}">
+                <button type="button">
+                    Delete
+                </button>
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <a href="/dashboard">
+        <button type="button">
+            Back to Dashboard
+        </button>
+    </a>
+
+</div>
+
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+
+
+</body>
+</html>
